@@ -1,0 +1,32 @@
+import { ConfigService } from '@nestjs/config';
+import { HttpService } from '@nestjs/axios';
+export declare class SystemUserService {
+    private readonly httpService;
+    private readonly configService;
+    private readonly logger;
+    private readonly systemUserServiceUrl;
+    constructor(httpService: HttpService, configService: ConfigService);
+    private getHeaders;
+    createUser(createUserDto: any, token?: string): Promise<any>;
+    updateUser(updateUserDto: any, token?: string): Promise<any>;
+    getUserById(id: string, token?: string): Promise<any>;
+    getAllUsers(paginationDto: any, token?: string): Promise<any>;
+    deleteUser(deleteUserDto: any, token?: string): Promise<any>;
+    createRole(createRoleDto: any, token?: string): Promise<any>;
+    updateRole(updateRoleDto: any, token?: string): Promise<any>;
+    getRoleById(id: string, token?: string): Promise<any>;
+    getAllRoles(paginationDto: any, token?: string): Promise<any>;
+    deleteRole(deleteRoleDto: any, token?: string): Promise<any>;
+    getAllPermissionsByRoleId(roleId: string, token?: string): Promise<any>;
+    updatePermissionsAccessByRoleId(updateDto: any, token?: string): Promise<any>;
+    createModule(createModuleDto: any, token?: string): Promise<any>;
+    updateModule(updateModuleDto: any, token?: string): Promise<any>;
+    getModuleById(id: string, token?: string): Promise<any>;
+    getAllModules(paginationDto: any, token?: string): Promise<any>;
+    deleteModule(deleteModuleDto: any, token?: string): Promise<any>;
+    createPermission(createPermissionDto: any, token?: string): Promise<any>;
+    updatePermission(updatePermissionDto: any, token?: string): Promise<any>;
+    getPermissionById(id: string, token?: string): Promise<any>;
+    getAllPermissions(paginationDto: any, token?: string): Promise<any>;
+    deletePermission(deletePermissionDto: any, token?: string): Promise<any>;
+}
