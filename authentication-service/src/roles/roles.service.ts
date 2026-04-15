@@ -5,19 +5,19 @@ import {
 } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
-import { Role } from "../entities/role.entity";
-import { RolePermission } from "../entities/role-permission.entity";
-import { Permission } from "../entities/permission.entity";
-import { Module } from "../entities/module.entity";
-import { CreateRoleDto } from "./dto/create-role.dto";
-import { UpdateRoleDto } from "./dto/update-role.dto";
-import { UpdateRolePermissionsDto } from "./dto/role-permissions.dto";
-import { PaginationDto } from "../common/dto/pagination.dto";
-import { ResponseHelper } from "../common/helpers/response.helper";
+import { Role, RolePermission, Permission, Module } from 'shared-entities';
+
+import {
+  CreateRoleDto,
+  UpdateRoleDto,
+  UpdateRolePermissionsDto,
+  PaginationDto
+} from 'shared-entities';
+import { ResponseHelper } from "shared-entities";
 import {
   ApiResponse,
   PaginatedApiResponse,
-} from "../common/interfaces/api-response.interface";
+} from "shared-entities";
 
 @Injectable()
 export class RolesService {

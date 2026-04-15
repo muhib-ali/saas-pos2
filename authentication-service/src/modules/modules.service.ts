@@ -5,16 +5,14 @@ import {
 } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
-import { Module } from "../entities/module.entity";
-import { CreateModuleDto } from "./dto/create-module.dto";
-import { UpdateModuleDto } from "./dto/update-module.dto";
-import { DeleteModuleDto } from "./dto/delete-module.dto";
-import { PaginationDto } from "../common/dto/pagination.dto";
-import { ResponseHelper } from "../common/helpers/response.helper";
+import { Module } from "shared-entities";
+import {CreateModuleDto,UpdateModuleDto , DeleteModuleDto} from 'shared-entities'
+import { PaginationDto } from "shared-entities";
+import { ResponseHelper } from "shared-entities";
 import {
   ApiResponse,
   PaginatedApiResponse,
-} from "../common/interfaces/api-response.interface";
+} from "shared-entities";
 
 @Injectable()
 export class ModulesService {

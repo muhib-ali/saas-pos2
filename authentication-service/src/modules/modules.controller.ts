@@ -19,14 +19,10 @@ import {
   ApiQuery,
 } from "@nestjs/swagger";
 import { ModulesService } from "./modules.service";
-import { CreateModuleDto } from "./dto/create-module.dto";
-import { UpdateModuleDto } from "./dto/update-module.dto";
-import { DeleteModuleDto } from "./dto/delete-module.dto";
-import {
-  ModuleResponseDto,
-  ModulesListResponseDto,
-} from "./dto/module-response.dto";
-import { PaginationDto } from "../common/dto/pagination.dto";
+
+import { CreateModuleDto, UpdateModuleDto, DeleteModuleDto, ModuleResponseDto, ModulesListResponseDto } from 'shared-entities';
+// import { PaginationDto } from "../common/dto/pagination.dto";
+import { PaginationDto} from 'shared-entities'
 
 @ApiTags("Modules")
 @ApiBearerAuth("JWT-auth")

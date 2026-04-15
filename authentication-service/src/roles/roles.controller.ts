@@ -20,15 +20,17 @@ import {
   ApiQuery,
 } from "@nestjs/swagger";
 import { RolesService } from "./roles.service";
-import { CreateRoleDto } from "./dto/create-role.dto";
-import { UpdateRoleDto } from "./dto/update-role.dto";
-import { DeleteRoleDto } from "./dto/delete-role.dto";
+
 import {
+  CreateRoleDto,
+  UpdateRoleDto,
+  DeleteRoleDto,
   UpdateRolePermissionsDto,
   RolePermissionsResponseDto,
-} from "./dto/role-permissions.dto";
-import { RoleResponseDto, RolesListResponseDto } from "./dto/role-response.dto";
-import { PaginationDto } from "../common/dto/pagination.dto";
+  RoleResponseDto,
+  RolesListResponseDto,
+  PaginationDto
+} from 'shared-entities';
 
 @ApiTags("Roles")
 @ApiBearerAuth("JWT-auth")

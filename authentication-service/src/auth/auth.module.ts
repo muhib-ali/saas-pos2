@@ -6,12 +6,7 @@ import { AuthController } from "./auth.controller";
 import { AuthService } from "./auth.service";
 import { JwtStrategy } from "./jwt.strategy";
 import { JwtAuthGuard } from "./jwt-auth.guard";
-import { User } from "../entities/user.entity";
-import { OauthToken } from "../entities/oauth-token.entity";
-import { RolePermission } from "../entities/role-permission.entity";
-import { Permission } from "../entities/permission.entity";
-import { Module as ModuleEntity } from "../entities/module.entity";
-import { Role } from "../entities/role.entity";
+import { User, OauthToken, RolePermission, Permission, Module as ModuleEntity, Role } from "shared-entities";
 import { CacheModule } from "../cache/cache.module";
 import { ConfigModule } from "../config/config.module";
 

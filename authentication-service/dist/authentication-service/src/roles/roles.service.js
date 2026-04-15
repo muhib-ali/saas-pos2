@@ -16,10 +16,7 @@ exports.RolesService = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
-const role_entity_1 = require("../entities/role.entity");
-const role_permission_entity_1 = require("../entities/role-permission.entity");
-const permission_entity_1 = require("../entities/permission.entity");
-const module_entity_1 = require("../entities/module.entity");
+const shared_entities_1 = require("shared-entities");
 const response_helper_1 = require("../common/helpers/response.helper");
 let RolesService = class RolesService {
     constructor(roleRepository, rolePermissionRepository, permissionRepository, moduleRepository) {
@@ -156,7 +153,7 @@ let RolesService = class RolesService {
             throw new common_1.BadRequestException("One or more permissions not found");
         }
         await this.rolePermissionRepository.manager.transaction(async (transactionalEntityManager) => {
-            await transactionalEntityManager.delete(role_permission_entity_1.RolePermission, {
+            await transactionalEntityManager.delete(shared_entities_1.RolePermission, {
                 role_id: roleId,
             });
             const newRolePermissions = [];
@@ -178,7 +175,7 @@ let RolesService = class RolesService {
                 }
             }
             if (newRolePermissions.length > 0) {
-                await transactionalEntityManager.save(role_permission_entity_1.RolePermission, newRolePermissions);
+                await transactionalEntityManager.save(shared_entities_1.RolePermission, newRolePermissions);
             }
         });
         return response_helper_1.ResponseHelper.success(null, "Role permissions updated successfully", "Role", 200);
@@ -187,10 +184,10 @@ let RolesService = class RolesService {
 exports.RolesService = RolesService;
 exports.RolesService = RolesService = __decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, typeorm_1.InjectRepository)(role_entity_1.Role)),
-    __param(1, (0, typeorm_1.InjectRepository)(role_permission_entity_1.RolePermission)),
-    __param(2, (0, typeorm_1.InjectRepository)(permission_entity_1.Permission)),
-    __param(3, (0, typeorm_1.InjectRepository)(module_entity_1.Module)),
+    __param(0, (0, typeorm_1.InjectRepository)(shared_entities_1.Role)),
+    __param(1, (0, typeorm_1.InjectRepository)(shared_entities_1.RolePermission)),
+    __param(2, (0, typeorm_1.InjectRepository)(shared_entities_1.Permission)),
+    __param(3, (0, typeorm_1.InjectRepository)(shared_entities_1.Module)),
     __metadata("design:paramtypes", [typeorm_2.Repository,
         typeorm_2.Repository,
         typeorm_2.Repository,

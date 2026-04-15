@@ -9,19 +9,14 @@ import { JwtService } from "@nestjs/jwt";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import * as bcrypt from "bcrypt";
-import { User } from "../entities/user.entity";
-import { OauthToken } from "../entities/oauth-token.entity";
-import { RolePermission } from "../entities/role-permission.entity";
-import { Permission } from "../entities/permission.entity";
-import { Module } from "../entities/module.entity";
-import { Role } from "../entities/role.entity";
-import { LoginDto } from "../../../api-gateway/src/auth/dto/login.dto";
-import { RefreshDto } from "../../../api-gateway/src/auth/dto/refresh.dto";
+
+import { User , OauthToken, RolePermission, Permission, Module, Role} from "shared-entities";
 import { CacheService } from "../cache/cache.service"; 
 import { AppConfigService } from "../config/config.service";
-import { ResponseHelper } from "../common/helpers/response.helper";
-import { ApiResponse } from "../common/interfaces/api-response.interface";
 
+// import { ResponseHelper } from "../common/helpers/response.helper";
+import {ResponseHelper, ApiResponse} from "shared-entities"
+import {LoginDto, RefreshDto} from "shared-entities"
 @Injectable()
 export class AuthService {
   private readonly logger = new Logger(AuthService.name);

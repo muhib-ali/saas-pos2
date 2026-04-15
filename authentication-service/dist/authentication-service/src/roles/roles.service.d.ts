@@ -1,12 +1,6 @@
 import { Repository } from "typeorm";
-import { Role } from "../entities/role.entity";
-import { RolePermission } from "../entities/role-permission.entity";
-import { Permission } from "../entities/permission.entity";
-import { Module } from "../entities/module.entity";
-import { CreateRoleDto } from "./dto/create-role.dto";
-import { UpdateRoleDto } from "./dto/update-role.dto";
-import { UpdateRolePermissionsDto } from "./dto/role-permissions.dto";
-import { PaginationDto } from "../common/dto/pagination.dto";
+import { Role, RolePermission, Permission, Module } from 'shared-entities';
+import { CreateRoleDto, UpdateRoleDto, UpdateRolePermissionsDto, PaginationDto } from 'shared-entities';
 import { ApiResponse, PaginatedApiResponse } from "../common/interfaces/api-response.interface";
 export declare class RolesService {
     private roleRepository;

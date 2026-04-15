@@ -16,8 +16,7 @@ exports.PermissionsService = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
-const permission_entity_1 = require("../entities/permission.entity");
-const module_entity_1 = require("../entities/module.entity");
+const shared_entities_1 = require("shared-entities");
 const response_helper_1 = require("../common/helpers/response.helper");
 let PermissionsService = class PermissionsService {
     constructor(permissionRepository, moduleRepository) {
@@ -25,21 +24,21 @@ let PermissionsService = class PermissionsService {
         this.moduleRepository = moduleRepository;
     }
     async create(createPermissionDto, loggedInUserId) {
-        const { moduleId, title, slug, description } = createPermissionDto;
+        const { module_id, title, slug, description } = createPermissionDto;
         const module = await this.moduleRepository.findOne({
-            where: { id: moduleId },
+            where: { id: module_id },
         });
         if (!module) {
             throw new common_1.BadRequestException("Module not found");
         }
         const existingPermission = await this.permissionRepository.findOne({
-            where: { slug, module_id: moduleId },
+            where: { slug, module_id: module_id },
         });
         if (existingPermission) {
             throw new common_1.BadRequestException("Permission with this slug already exists in this module");
         }
         const permission = this.permissionRepository.create({
-            module_id: moduleId,
+            module_id: module_id,
             title,
             slug,
             description,
@@ -54,7 +53,7 @@ let PermissionsService = class PermissionsService {
         return response_helper_1.ResponseHelper.success(permissionWithModule, "Permission created successfully", "Permission", 201);
     }
     async update(updatePermissionDto, loggedInUserId) {
-        const { id, moduleId, title, slug, description } = updatePermissionDto;
+        const { id, module_id, title, slug, description } = updatePermissionDto;
         const permission = await this.permissionRepository.findOne({
             where: { id },
             relations: ["module"],
@@ -63,19 +62,19 @@ let PermissionsService = class PermissionsService {
             throw new common_1.NotFoundException("Permission not found");
         }
         const module = await this.moduleRepository.findOne({
-            where: { id: moduleId },
+            where: { id: module_id },
         });
         if (!module) {
             throw new common_1.BadRequestException("Module not found");
         }
         const existingPermission = await this.permissionRepository.findOne({
-            where: { slug, module_id: moduleId },
+            where: { slug, module_id: module_id },
         });
         if (existingPermission && existingPermission.id !== id) {
             throw new common_1.BadRequestException("Permission with this slug already exists in this module");
         }
         const updateData = {
-            module_id: moduleId,
+            module_id,
             title,
             slug,
             description,
@@ -99,11 +98,11 @@ let PermissionsService = class PermissionsService {
         return response_helper_1.ResponseHelper.success(permission, "Permission retrieved successfully", "Permission", 200);
     }
     async getAll(filterDto) {
-        const { page = 1, limit = 10, moduleId } = filterDto;
+        const { page = 1, limit = 10, module_id } = filterDto;
         const skip = (page - 1) * limit;
         const whereConditions = {};
-        if (moduleId) {
-            whereConditions.module_id = moduleId;
+        if (module_id) {
+            whereConditions.module_id = module_id;
         }
         const [permissions, total] = await this.permissionRepository.findAndCount({
             where: whereConditions,
@@ -112,7 +111,7 @@ let PermissionsService = class PermissionsService {
             relations: ["module"],
             order: { created_at: "DESC" },
         });
-        const message = moduleId
+        const message = module_id
             ? "Permissions filtered by module retrieved successfully"
             : "Permissions retrieved successfully";
         return response_helper_1.ResponseHelper.paginated(permissions, page, limit, total, "permissions", message, "Permission");
@@ -132,8 +131,8 @@ let PermissionsService = class PermissionsService {
 exports.PermissionsService = PermissionsService;
 exports.PermissionsService = PermissionsService = __decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, typeorm_1.InjectRepository)(permission_entity_1.Permission)),
-    __param(1, (0, typeorm_1.InjectRepository)(module_entity_1.Module)),
+    __param(0, (0, typeorm_1.InjectRepository)(shared_entities_1.Permission)),
+    __param(1, (0, typeorm_1.InjectRepository)(shared_entities_1.Module)),
     __metadata("design:paramtypes", [typeorm_2.Repository,
         typeorm_2.Repository])
 ], PermissionsService);

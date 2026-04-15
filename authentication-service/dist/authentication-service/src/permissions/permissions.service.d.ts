@@ -1,10 +1,6 @@
 import { Repository } from "typeorm";
-import { Permission } from "../entities/permission.entity";
-import { Module } from "../entities/module.entity";
-import { CreatePermissionDto } from "./dto/create-permission.dto";
-import { UpdatePermissionDto } from "./dto/update-permission.dto";
-import { DeletePermissionDto } from "./dto/delete-permission.dto";
-import { PermissionFilterDto } from "./dto/permission-filter.dto";
+import { Permission, Module } from 'shared-entities';
+import { CreatePermissionDto, UpdatePermissionDto, DeletePermissionDto, PermissionFilterDto } from 'shared-entities';
 import { ApiResponse, PaginatedApiResponse } from "../common/interfaces/api-response.interface";
 export declare class PermissionsService {
     private permissionRepository;

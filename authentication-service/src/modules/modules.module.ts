@@ -2,7 +2,8 @@ import { Module as NestModule } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { ModulesController } from "./modules.controller";
 import { ModulesService } from "./modules.service";
-import { Module } from "../entities/module.entity";
+// import { Module } from "../entities/module.entity";
+import { Module } from "shared-entities";
 
 @NestModule({
   imports: [TypeOrmModule.forFeature([Module])],

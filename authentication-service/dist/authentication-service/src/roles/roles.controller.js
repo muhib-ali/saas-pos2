@@ -16,12 +16,7 @@ exports.RolesController = void 0;
 const common_1 = require("@nestjs/common");
 const swagger_1 = require("@nestjs/swagger");
 const roles_service_1 = require("./roles.service");
-const create_role_dto_1 = require("./dto/create-role.dto");
-const update_role_dto_1 = require("./dto/update-role.dto");
-const delete_role_dto_1 = require("./dto/delete-role.dto");
-const role_permissions_dto_1 = require("./dto/role-permissions.dto");
-const role_response_dto_1 = require("./dto/role-response.dto");
-const pagination_dto_1 = require("../common/dto/pagination.dto");
+const shared_entities_1 = require("shared-entities");
 let RolesController = class RolesController {
     constructor(rolesService) {
         this.rolesService = rolesService;
@@ -57,7 +52,7 @@ __decorate([
     (0, swagger_1.ApiResponse)({
         status: 201,
         description: "Role created successfully",
-        type: role_response_dto_1.RoleResponseDto,
+        type: shared_entities_1.RoleResponseDto,
     }),
     (0, swagger_1.ApiResponse)({
         status: 400,
@@ -73,10 +68,10 @@ __decorate([
         },
     }),
     (0, swagger_1.ApiResponse)({ status: 401, description: "Unauthorized" }),
-    (0, swagger_1.ApiBody)({ type: create_role_dto_1.CreateRoleDto }),
+    (0, swagger_1.ApiBody)({ type: shared_entities_1.CreateRoleDto }),
     __param(0, (0, common_1.Body)(common_1.ValidationPipe)),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [create_role_dto_1.CreateRoleDto]),
+    __metadata("design:paramtypes", [shared_entities_1.CreateRoleDto]),
     __metadata("design:returntype", Promise)
 ], RolesController.prototype, "create", null);
 __decorate([
@@ -85,14 +80,14 @@ __decorate([
     (0, swagger_1.ApiResponse)({
         status: 200,
         description: "Role updated successfully",
-        type: role_response_dto_1.RoleResponseDto,
+        type: shared_entities_1.RoleResponseDto,
     }),
     (0, swagger_1.ApiResponse)({ status: 404, description: "Role not found" }),
     (0, swagger_1.ApiResponse)({ status: 401, description: "Unauthorized" }),
-    (0, swagger_1.ApiBody)({ type: update_role_dto_1.UpdateRoleDto }),
+    (0, swagger_1.ApiBody)({ type: shared_entities_1.UpdateRoleDto }),
     __param(0, (0, common_1.Body)(common_1.ValidationPipe)),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [update_role_dto_1.UpdateRoleDto]),
+    __metadata("design:paramtypes", [shared_entities_1.UpdateRoleDto]),
     __metadata("design:returntype", Promise)
 ], RolesController.prototype, "update", null);
 __decorate([
@@ -101,7 +96,7 @@ __decorate([
     (0, swagger_1.ApiResponse)({
         status: 200,
         description: "Role found",
-        type: role_response_dto_1.RoleResponseDto,
+        type: shared_entities_1.RoleResponseDto,
     }),
     (0, swagger_1.ApiResponse)({ status: 404, description: "Role not found" }),
     (0, swagger_1.ApiResponse)({ status: 401, description: "Unauthorized" }),
@@ -131,12 +126,12 @@ __decorate([
     (0, swagger_1.ApiResponse)({
         status: 200,
         description: "Roles retrieved successfully",
-        type: role_response_dto_1.RolesListResponseDto,
+        type: shared_entities_1.RolesListResponseDto,
     }),
     (0, swagger_1.ApiResponse)({ status: 401, description: "Unauthorized" }),
     __param(0, (0, common_1.Query)(common_1.ValidationPipe)),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [pagination_dto_1.PaginationDto]),
+    __metadata("design:paramtypes", [shared_entities_1.PaginationDto]),
     __metadata("design:returntype", Promise)
 ], RolesController.prototype, "getAll", null);
 __decorate([
@@ -156,10 +151,10 @@ __decorate([
     }),
     (0, swagger_1.ApiResponse)({ status: 404, description: "Role not found" }),
     (0, swagger_1.ApiResponse)({ status: 401, description: "Unauthorized" }),
-    (0, swagger_1.ApiBody)({ type: delete_role_dto_1.DeleteRoleDto }),
+    (0, swagger_1.ApiBody)({ type: shared_entities_1.DeleteRoleDto }),
     __param(0, (0, common_1.Body)(common_1.ValidationPipe)),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [delete_role_dto_1.DeleteRoleDto]),
+    __metadata("design:paramtypes", [shared_entities_1.DeleteRoleDto]),
     __metadata("design:returntype", Promise)
 ], RolesController.prototype, "delete", null);
 __decorate([
@@ -168,7 +163,7 @@ __decorate([
     (0, swagger_1.ApiResponse)({
         status: 200,
         description: "Role permissions retrieved successfully",
-        type: role_permissions_dto_1.RolePermissionsResponseDto,
+        type: shared_entities_1.RolePermissionsResponseDto,
     }),
     (0, swagger_1.ApiResponse)({
         status: 404,
@@ -231,11 +226,11 @@ __decorate([
             },
         },
     }),
-    (0, swagger_1.ApiBody)({ type: role_permissions_dto_1.UpdateRolePermissionsDto }),
+    (0, swagger_1.ApiBody)({ type: shared_entities_1.UpdateRolePermissionsDto }),
     __param(0, (0, common_1.Body)(common_1.ValidationPipe)),
     __param(1, (0, common_1.Request)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [role_permissions_dto_1.UpdateRolePermissionsDto, Object]),
+    __metadata("design:paramtypes", [shared_entities_1.UpdateRolePermissionsDto, Object]),
     __metadata("design:returntype", Promise)
 ], RolesController.prototype, "updatePermissionsAccessByRoleId", null);
 exports.RolesController = RolesController = __decorate([

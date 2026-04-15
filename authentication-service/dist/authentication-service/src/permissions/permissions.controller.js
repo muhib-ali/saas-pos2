@@ -16,11 +16,8 @@ exports.PermissionsController = void 0;
 const common_1 = require("@nestjs/common");
 const swagger_1 = require("@nestjs/swagger");
 const permissions_service_1 = require("./permissions.service");
-const create_permission_dto_1 = require("./dto/create-permission.dto");
-const update_permission_dto_1 = require("./dto/update-permission.dto");
-const delete_permission_dto_1 = require("./dto/delete-permission.dto");
-const permission_filter_dto_1 = require("./dto/permission-filter.dto");
-const permission_response_dto_1 = require("./dto/permission-response.dto");
+const shared_entities_1 = require("shared-entities");
+const shared_entities_2 = require("shared-entities");
 let PermissionsController = class PermissionsController {
     constructor(permissionsService) {
         this.permissionsService = permissionsService;
@@ -50,7 +47,7 @@ __decorate([
     (0, swagger_1.ApiResponse)({
         status: 201,
         description: "Permission created successfully",
-        type: permission_response_dto_1.PermissionResponseDto,
+        type: shared_entities_2.PermissionResponseDto,
     }),
     (0, swagger_1.ApiResponse)({
         status: 400,
@@ -65,11 +62,11 @@ __decorate([
             },
         },
     }),
-    (0, swagger_1.ApiBody)({ type: create_permission_dto_1.CreatePermissionDto }),
+    (0, swagger_1.ApiBody)({ type: shared_entities_1.CreatePermissionDto }),
     __param(0, (0, common_1.Body)(common_1.ValidationPipe)),
     __param(1, (0, common_1.Request)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [create_permission_dto_1.CreatePermissionDto, Object]),
+    __metadata("design:paramtypes", [shared_entities_1.CreatePermissionDto, Object]),
     __metadata("design:returntype", Promise)
 ], PermissionsController.prototype, "create", null);
 __decorate([
@@ -78,7 +75,7 @@ __decorate([
     (0, swagger_1.ApiResponse)({
         status: 200,
         description: "Permission updated successfully",
-        type: permission_response_dto_1.PermissionResponseDto,
+        type: shared_entities_2.PermissionResponseDto,
     }),
     (0, swagger_1.ApiResponse)({
         status: 404,
@@ -106,11 +103,11 @@ __decorate([
             },
         },
     }),
-    (0, swagger_1.ApiBody)({ type: update_permission_dto_1.UpdatePermissionDto }),
+    (0, swagger_1.ApiBody)({ type: shared_entities_1.UpdatePermissionDto }),
     __param(0, (0, common_1.Body)(common_1.ValidationPipe)),
     __param(1, (0, common_1.Request)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [update_permission_dto_1.UpdatePermissionDto, Object]),
+    __metadata("design:paramtypes", [shared_entities_1.UpdatePermissionDto, Object]),
     __metadata("design:returntype", Promise)
 ], PermissionsController.prototype, "update", null);
 __decorate([
@@ -119,7 +116,7 @@ __decorate([
     (0, swagger_1.ApiResponse)({
         status: 200,
         description: "Permission retrieved successfully",
-        type: permission_response_dto_1.PermissionResponseDto,
+        type: shared_entities_2.PermissionResponseDto,
     }),
     (0, swagger_1.ApiResponse)({
         status: 404,
@@ -148,7 +145,7 @@ __decorate([
     (0, swagger_1.ApiResponse)({
         status: 200,
         description: "Permissions retrieved successfully",
-        type: permission_response_dto_1.PermissionsListResponseDto,
+        type: shared_entities_2.PermissionsListResponseDto,
     }),
     (0, swagger_1.ApiQuery)({
         name: "page",
@@ -171,7 +168,7 @@ __decorate([
     }),
     __param(0, (0, common_1.Query)(common_1.ValidationPipe)),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [permission_filter_dto_1.PermissionFilterDto]),
+    __metadata("design:paramtypes", [shared_entities_1.PermissionFilterDto]),
     __metadata("design:returntype", Promise)
 ], PermissionsController.prototype, "getAll", null);
 __decorate([
@@ -203,10 +200,10 @@ __decorate([
             },
         },
     }),
-    (0, swagger_1.ApiBody)({ type: delete_permission_dto_1.DeletePermissionDto }),
+    (0, swagger_1.ApiBody)({ type: shared_entities_1.DeletePermissionDto }),
     __param(0, (0, common_1.Body)(common_1.ValidationPipe)),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [delete_permission_dto_1.DeletePermissionDto]),
+    __metadata("design:paramtypes", [shared_entities_1.DeletePermissionDto]),
     __metadata("design:returntype", Promise)
 ], PermissionsController.prototype, "delete", null);
 exports.PermissionsController = PermissionsController = __decorate([

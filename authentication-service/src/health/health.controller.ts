@@ -5,7 +5,8 @@ import {
   TypeOrmHealthIndicator,
 } from "@nestjs/terminus";
 import { ApiTags, ApiOperation, ApiResponse } from "@nestjs/swagger";
-import { Public } from "../common/decorators/public.decorator";
+// import { Public } from "../common/decorators/public.decorator";
+import { Public } from "shared-entities";
 
 @ApiTags("Health")
 @Controller("health")

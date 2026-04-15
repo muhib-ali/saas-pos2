@@ -1,14 +1,11 @@
 import { PermissionsService } from "./permissions.service";
-import { CreatePermissionDto } from "./dto/create-permission.dto";
-import { UpdatePermissionDto } from "./dto/update-permission.dto";
-import { DeletePermissionDto } from "./dto/delete-permission.dto";
-import { PermissionFilterDto } from "./dto/permission-filter.dto";
+import { CreatePermissionDto, UpdatePermissionDto, DeletePermissionDto, PermissionFilterDto } from "shared-entities";
 export declare class PermissionsController {
     private permissionsService;
     constructor(permissionsService: PermissionsService);
-    create(createPermissionDto: CreatePermissionDto, req: any): Promise<import("../common/interfaces/api-response.interface").ApiResponse<import("../entities/permission.entity").Permission>>;
-    update(updatePermissionDto: UpdatePermissionDto, req: any): Promise<import("../common/interfaces/api-response.interface").ApiResponse<import("../entities/permission.entity").Permission>>;
-    getById(id: string): Promise<import("../common/interfaces/api-response.interface").ApiResponse<import("../entities/permission.entity").Permission>>;
-    getAll(filterDto: PermissionFilterDto): Promise<import("../common/interfaces/api-response.interface").PaginatedApiResponse<import("../entities/permission.entity").Permission>>;
+    create(createPermissionDto: CreatePermissionDto, req: any): Promise<import("../common/interfaces/api-response.interface").ApiResponse<import("shared-entities").Permission>>;
+    update(updatePermissionDto: UpdatePermissionDto, req: any): Promise<import("../common/interfaces/api-response.interface").ApiResponse<import("shared-entities").Permission>>;
+    getById(id: string): Promise<import("../common/interfaces/api-response.interface").ApiResponse<import("shared-entities").Permission>>;
+    getAll(filterDto: PermissionFilterDto): Promise<import("../common/interfaces/api-response.interface").PaginatedApiResponse<import("shared-entities").Permission>>;
     delete(deletePermissionDto: DeletePermissionDto): Promise<import("../common/interfaces/api-response.interface").ApiResponse<null>>;
 }

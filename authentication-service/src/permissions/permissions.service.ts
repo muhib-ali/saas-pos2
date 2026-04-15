@@ -5,17 +5,18 @@ import {
 } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
-import { Permission } from "../entities/permission.entity";
-import { Module } from "../entities/module.entity";
-import { CreatePermissionDto } from "./dto/create-permission.dto";
-import { UpdatePermissionDto } from "./dto/update-permission.dto";
-import { DeletePermissionDto } from "./dto/delete-permission.dto";
-import { PermissionFilterDto } from "./dto/permission-filter.dto";
-import { ResponseHelper } from "../common/helpers/response.helper";
+import { Permission, Module } from 'shared-entities';
+import {
+  CreatePermissionDto,
+  UpdatePermissionDto,
+  DeletePermissionDto,
+  PermissionFilterDto
+} from 'shared-entities';
+import { ResponseHelper } from "shared-entities";
 import {
   ApiResponse,
   PaginatedApiResponse,
-} from "../common/interfaces/api-response.interface";
+} from "shared-entities";
 
 @Injectable()
 export class PermissionsService {
@@ -30,11 +31,11 @@ export class PermissionsService {
     createPermissionDto: CreatePermissionDto,
     loggedInUserId: string
   ): Promise<ApiResponse<Permission>> {
-    const { moduleId, title, slug, description } = createPermissionDto;
+    const { module_id, title, slug, description } = createPermissionDto;
 
     // Check if module exists
     const module = await this.moduleRepository.findOne({
-      where: { id: moduleId },
+      where: { id: module_id },
     });
 
     if (!module) {
@@ -43,7 +44,7 @@ export class PermissionsService {
 
     // Check if permission with same slug already exists in this module
     const existingPermission = await this.permissionRepository.findOne({
-      where: { slug, module_id: moduleId },
+      where: { slug, module_id: module_id },
     });
 
     if (existingPermission) {
@@ -53,7 +54,7 @@ export class PermissionsService {
     }
 
     const permission = this.permissionRepository.create({
-      module_id: moduleId,
+      module_id: module_id,
       title,
       slug,
       description,
@@ -81,7 +82,7 @@ export class PermissionsService {
     updatePermissionDto: UpdatePermissionDto,
     loggedInUserId: string
   ): Promise<ApiResponse<Permission>> {
-    const { id, moduleId, title, slug, description } = updatePermissionDto;
+    const { id, module_id, title, slug, description } = updatePermissionDto;
 
     const permission = await this.permissionRepository.findOne({
       where: { id },
@@ -94,7 +95,7 @@ export class PermissionsService {
 
     // Check if module exists
     const module = await this.moduleRepository.findOne({
-      where: { id: moduleId },
+      where: { id: module_id },
     });
 
     if (!module) {
@@ -103,7 +104,7 @@ export class PermissionsService {
 
     // Check if another permission with same slug exists in this module (excluding current permission)
     const existingPermission = await this.permissionRepository.findOne({
-      where: { slug, module_id: moduleId },
+      where: { slug, module_id: module_id },
     });
 
     if (existingPermission && existingPermission.id !== id) {
@@ -114,7 +115,7 @@ export class PermissionsService {
 
     // Prepare update data
     const updateData = {
-      module_id: moduleId,
+      module_id,
       title,
       slug,
       description,
@@ -157,15 +158,15 @@ export class PermissionsService {
   async getAll(
     filterDto: PermissionFilterDto
   ): Promise<PaginatedApiResponse<Permission>> {
-    const { page = 1, limit = 10, moduleId } = filterDto;
+    const { page = 1, limit = 10, module_id } = filterDto;
     const skip = (page - 1) * limit;
 
     // Build query conditions
     const whereConditions: any = {};
 
     // Add module filter if provided
-    if (moduleId) {
-      whereConditions.module_id = moduleId;
+    if (module_id) {
+      whereConditions.module_id = module_id;
     }
 
     const [permissions, total] = await this.permissionRepository.findAndCount({
@@ -176,7 +177,7 @@ export class PermissionsService {
       order: { created_at: "DESC" },
     });
 
-    const message = moduleId
+    const message = module_id
       ? "Permissions filtered by module retrieved successfully"
       : "Permissions retrieved successfully";
 

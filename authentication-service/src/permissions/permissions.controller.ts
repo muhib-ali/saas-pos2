@@ -20,14 +20,20 @@ import {
   ApiQuery,
 } from "@nestjs/swagger";
 import { PermissionsService } from "./permissions.service";
-import { CreatePermissionDto } from "./dto/create-permission.dto";
-import { UpdatePermissionDto } from "./dto/update-permission.dto";
-import { DeletePermissionDto } from "./dto/delete-permission.dto";
-import { PermissionFilterDto } from "./dto/permission-filter.dto";
+// import { CreatePermissionDto } from "./dto/create-permission.dto";
+// import { UpdatePermissionDto } from "./dto/update-permission.dto";
+// import { DeletePermissionDto } from "./dto/delete-permission.dto";
+// import { PermissionFilterDto } from "./dto/permission-filter.dto";
+import {
+  CreatePermissionDto,
+  UpdatePermissionDto,
+  DeletePermissionDto,
+  PermissionFilterDto,
+} from "shared-entities";
 import {
   PermissionResponseDto,
   PermissionsListResponseDto,
-} from "./dto/permission-response.dto";
+} from "shared-entities";
 
 @ApiTags("Permissions")
 @ApiBearerAuth("JWT-auth")
